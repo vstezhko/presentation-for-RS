@@ -267,7 +267,12 @@ gulp.task('test', gulp.series( 'eslint', 'qunit' ))
 
 gulp.task('default', gulp.series(gulp.parallel('js', 'css', 'plugins'), 'test'))
 
-gulp.task('build', gulp.parallel('js', 'css', 'plugins'))
+gulp.task('html', () => {
+    return gulp.src('./index.html')
+      .pipe(gulp.dest('dist/'));
+});
+
+gulp.task('build', gulp.parallel('js', 'css', 'html', 'plugins'))
 
 gulp.task('package', gulp.series(() =>
 
